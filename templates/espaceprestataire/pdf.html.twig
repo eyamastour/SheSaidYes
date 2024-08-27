@@ -1,0 +1,44 @@
+<div style="margin : 30px">
+	<div style="text-align:center">
+		<h2>
+			espace prestataire PDF</h2>
+	</div>
+
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>Nomsociete</th>
+                <th>Numsociete</th>
+                <th>Faxsociete</th>
+                <th>Catsociete</th>
+                <th>Typesociete</th>
+                <th>Url</th>
+				<th>QrCode</th>
+
+			</tr>
+		</thead>
+		<tbody>
+            {% for espaceprestatairee in espaceprestataire %}
+									<tr>
+										 
+                                        <td>{{ espaceprestatairee.nomsociete }}</td>
+                                        <td>{{ espaceprestatairee.numsociete }}</td>
+                                        <td>{{ espaceprestatairee.faxsociete }}</td>
+                                        <td>{{ espaceprestatairee.catsociete }}</td>
+                                        <td>{{ espaceprestatairee.typesociete }}</td>
+										<td>{{ espaceprestatairee.url }}</td>
+										<td >
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data= {{espaceprestatairee.idprest}},nom de societe:{{espaceprestatairee.nomsociete}},Type de societe:{{espaceprestatairee.typesociete}},numero tel  :{{ espaceprestatairee.numsociete}}&amp;size=250x250" alt="" title=":" style="atsc-nav-index:1000px"/>  
+          </td>
+
+
+									
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="7">no records found</td>
+									</tr>
+								{% endfor %}
+		</tbody>
+	</table>
+</div>

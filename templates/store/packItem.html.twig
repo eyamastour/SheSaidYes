@@ -1,0 +1,156 @@
+{% extends 'front_base.html.twig' %}
+{% block main %}
+	{{parent()}}
+
+	<style>
+		.star {
+			font-size: 2rem;
+		}
+
+		.hover {
+			color: rgb(255, 196, 0);
+		}
+	</style>
+	<div id="store_item">
+		<div class="row">
+			<div class="col-6 d-flex justify-content-center ">
+
+				<img src="{{ asset('uploads/'~ data.image) }} " width="65%" height="100%"></div>
+			<div class="col-6 ">
+				<div class="d-flex justify-content-between mb-1">
+					<div class="mb-1">
+						<h2>{{data.nom}}</h2>
+					</div>
+					<div>
+						{% if data.promo > 0 %}
+							<div class="badge bg-dark text-white " style="top: 0.5rem; right: 0.5rem">
+								-{{data.promo}}%
+							</div>
+						{% endif %}
+						{% if  data.promo > 0 %}
+							<span class="text-muted text-decoration-line-through">{{data.prix}}
+								$</span>
+
+
+							{{(data.prix / 100 )* data.promo}}
+
+
+						{% else %}
+
+							{{data.prix}}
+							$
+						{% endif %}
+					</div>
+					<div class="mb-1">
+						<ul class="list-unstyled  mb-1">
+							<li>
+								<i class="star" data-note="1">&#9733;</i>
+								<i class="star" data-note="2">&#9733;</i>
+								<i class="star" data-note="3">&#9733;</i>
+								<i class="star" data-note="4">&#9733;</i>
+								<i class="star" data-note="5">&#9733;</i>
+								<i class="note"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<h2>Description</h2>
+				<div class="des">
+
+					{{data.description}}
+				</div>
+
+				<div class="mb-1 mt-2">
+					<h2>Services</h2>
+					<div class="des">
+						{% for s in services %}
+							<a style="color : #000" href={{ path('app_store_item_service', {'id': s.id} ) }}>
+								<div class="mb-1  d-flex  align-self-stretch service">
+
+									<img class="service_pack " src="{{ asset('uploads/' ~ s.image) }} " width="7%" height="5%">
+
+									<p calss="w-25">{{s.description}}</p>
+
+								</div>
+							</a>
+
+						{% endfor %}
+					</div>
+				</div>
+				<div class="d-flex justify-content-center mt-5">
+					<button class=" mx-5 btn btn-danger btn_item">
+						Add To Cart</button>
+					<button class="  btn btn-danger btn_item">
+						Add To W    ishList</button>
+				</diV>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<h4 style="margin-left: 15%">
+	Notre Location :</h4>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+<script>
+	const p1 = {{ data.pos1|json_encode() }};
+const p2 = {{ data.pos2|json_encode() }}
+
+var map = L.map('map').setView([
+36.70365959719456, 10.17818283871446
+], 7);
+var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+L.marker([p1, p2]).addTo(map).bindPopup('Bienvenu').openPopup();
+</script>
+<script>
+	const stars = document.querySelectorAll('.star');
+let check = false;
+stars.forEach(star => {
+star.addEventListener('mouseover', selectStars);
+star.addEventListener('mouseleave', unselectStars);
+star.addEventListener('click', activeSelect);
+})
+
+function selectStars(e) {
+const data = e.target;
+const etoiles = priviousSiblings(data);
+if (! check) {
+etoiles.forEach(etoile => {
+etoile.classList.add('hover');
+})
+}
+
+}
+
+function unselectStars(e) {
+const data = e.target;
+const etoiles = priviousSiblings(data);
+if (! check) {
+etoiles.forEach(etoile => {
+etoile.classList.remove('hover');
+})
+}
+}
+
+function activeSelect(e) {
+if (! check) {
+check = true;
+document.querySelector('.note').innerHTML = e.target.dataset.note + '/5';
+}
+}
+
+function priviousSiblings(data) {
+let values = [data];
+while (data = data.previousSibling) {
+if (data.nodeName === 'I') {
+values.push(data);
+}
+}
+return values;
+}
+</script>{% endblock %}

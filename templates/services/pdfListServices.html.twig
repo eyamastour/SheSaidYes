@@ -1,0 +1,36 @@
+<div style="margin : 30px">
+	<div style="text-align:center">
+		<h2>
+			Services PDF</h2>
+	</div>
+
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>Image</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Prix</th>
+				<th>Promotion</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for service in services %}
+				<tr>
+					<td>
+						<img src="{{ './uploads/' ~ service.image }}" alt="" width="100" height="100"></td>
+					<td>{{ service.nom }}</td>
+					<td>{{ service.description }}</td>
+					<td>{{ service.prix }}</td>
+					<td>{{ service.promo }}%</td>
+
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

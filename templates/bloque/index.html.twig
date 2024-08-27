@@ -1,0 +1,20 @@
+{% extends 'front_base.html.twig' %}
+
+{% block main %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block body %}
+    <h1>Page non disponible</h1>
+    <h2> 
+        Cher utilisateur, <br>
+        vous ne pouvez pas accéder à She Said Yes!<br>
+        Votre compte a été bloqué pour la raison : test <br>
+        Vous pouvez nous contacter sur shesaidyes.pidev@gmail.com pour récupérer votre compte  </h2>
+
+    <p><a href="{{ path('app_home_page') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

@@ -1,0 +1,184 @@
+
+{% block main %}
+<style>
+body {
+	background-image : url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v983batch2-021-x.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=489c3a6e89103a3d56dde9d999f46098);
+}
+.text-danger strong {
+    		color: #9f181c;
+		}
+		.receipt-main {
+			background: #ffffff none repeat scroll 0 0;
+			border-bottom: 12px solid #333333;
+			border-top: 12px solid #9f181c;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			padding: 40px 30px !important;
+			position: relative;
+			box-shadow: 0 1px 21px #acacac;
+			color: #333333;
+			font-family: open sans;
+		}
+		.receipt-main p {
+			color: #333333;
+			font-family: open sans;
+			line-height: 1.42857;
+		}
+		.receipt-footer h1 {
+			font-size: 15px;
+			font-weight: 400 !important;
+			margin: 0 !important;
+		}
+		.receipt-main::after {
+			background: #414143 none repeat scroll 0 0;
+			content: "";
+			height: 5px;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: -13px;
+		}
+		.receipt-main thead {
+			background: #414143 none repeat scroll 0 0;
+		}
+		.receipt-main thead th {
+			color:#fff;
+		}
+		.receipt-right h5 {
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0 0 7px 0;
+		}
+		.receipt-right p {
+			font-size: 12px;
+			margin: 0px;
+		}
+		.receipt-right p i {
+			text-align: center;
+			width: 18px;
+		}
+		.receipt-main td {
+			padding: 9px 20px !important;
+		}
+		.receipt-main th {
+			padding: 13px 20px !important;
+		}
+		.receipt-main td {
+			font-size: 13px;
+			font-weight: initial !important;
+		}
+		.receipt-main td p:last-child {
+			margin: 0;
+			padding: 0;
+		}	
+		.receipt-main td h2 {
+			font-size: 20px;
+			font-weight: 900;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.receipt-header-mid .receipt-left h1 {
+			font-weight: 100;
+			margin: 34px 0 0;
+			text-align: right;
+			text-transform: uppercase;
+		}
+		.receipt-header-mid {
+			margin: 24px 0;
+			overflow: hidden;
+		}
+		
+		#container {
+			background-color: #dcdcdc;
+		}
+        </style>
+<div class="container" style="margin-left:30%; width:50%; background-color:#FDE4CF">
+	<div class="row">
+		
+        <div class="receipt-main">
+            <div class="row">
+    			<div class="receipt-header" style="margin-left:30%">
+					<div>
+					
+					</div>
+					<div >
+						<div class="receipt">
+						 <img src="{{ asset ('img/home/logo.png')}}" width="120" style="margin-left:-50px">
+							<h5 style="font-family:Lucida Handwriting;margin-right:80px">Date : 28/04/2022.</h5>
+							 
+						</div>
+					</div>
+				</div>
+
+			
+			<div class="row">
+				<div class="receipt-header receipt-header-mid" style="margin-left:40%">
+					<div class="">
+						
+					</div>
+					<div class="">
+						<div class="receipt">
+							<h1 style="font-family:Lucida Handwriting;margin-right:20px">Acquit de Paiement</h1>
+						</div>
+					</div>
+				</div>
+            </div>
+			
+            <div style="margin-left:10%">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">Services</th>
+							<th>Description</th>
+							<th>#</th>
+                            <th style="width:150px">Prix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						{% for item in items  %}
+                        <tr>
+						<td style="font-size:20px"> <img src="{{ asset ('uploads/' ~ item.pack.image) }}" alt="cannot get photo" width="70" class="img-fluid rounded shadow-sm"></td>
+                            <td style="font-size:20px">{{ item.pack.nom }}</td>
+							<td>{{item.quantity}}</td>
+                            <td style="font-size:20px"><i class="fa fa-inr"></i> ${{ item.pack.prix * item.quantity }}</td>
+                        </tr>
+                    				{% endfor %}
+                    
+                        
+                          
+                        <tr>
+                           
+                            <td class="text-center" colspan="2"><h2><strong>Total: </strong></h2></td>
+                            <td class=" text-danger"><h2><strong><i class="fa fa-inr"></i> 	${{ total }}</strong></h2></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+			
+			<div class="row" style="margin-left:40%">
+				<div class="receipt-header receipt-header-mid receipt-footer">
+					<div class="">
+						<div class="receipt">
+						
+							<h5 style="color: rgb(140, 140, 140);"> Merci Pour votre Achat!</h5>
+							<h6 style="color: rgb(140, 140, 140);"> Numéro de la commande : {{random}} </h6>
+						</div>
+					</div>
+					<div class="">
+						<div class="receipt">
+
+						
+						
+                            <a href="{{path('receipt')}}"> <button style="width:50%;margin-left:10%;background-color:black;color:white;">  imprimer </button> </a>
+						</div>
+					</div>
+				</div>
+            </div>
+			
+        </div>    
+	</div>
+</div>
+
+
+
+{% endblock %}

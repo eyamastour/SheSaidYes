@@ -1,0 +1,39 @@
+{% extends 'front_base.html.twig' %}
+
+
+{% block main %}
+	<div class="js-filter">
+		<div id="store">
+			<div class="row">
+				<div class="col col-lg-2 " style="margin-right :50px">
+					<div style="margin-top:10px">
+						{{ include('services/store_form.html.twig') }}
+					</div>
+
+
+				</div>
+				<div class="col col-lg-9 ">
+					<div class="container px-4 px-lg-5 mt-5">
+						<div class="mb-2 d-flex justify-content-end js-filter-sorting">
+							{% include 'store/services_sorting.html.twig'%}
+						</div>
+						<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3  js-filter-content ">
+							{% include 'store/services.html.twig'%}
+
+
+						</div>
+						<div class="js-filter-pagination">
+							{{ knp_pagination_render(data, null, {}, {
+   							'align': 'center',
+   							'size': 'large',
+  							 'rounded': true,
+						}) }}
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

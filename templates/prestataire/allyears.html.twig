@@ -1,0 +1,170 @@
+{% extends 'back_base.html.twig' %}
+
+{% block main %}
+
+
+
+
+
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{path('app_prestataire')}}">Dashboard</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-lg-3">
+			<div class="widget-small primary coloured-icon">
+				<i class="icon fa fa-users fa-3x"></i>
+				<div class="info">
+					<h4>Users</h4>
+					<p>
+						<b>5</b>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<div class="widget-small info coloured-icon">
+				<i class="icon fa fa-thumbs-o-up fa-3x"></i>
+				<div class="info">
+					<h4>Argent reçu</h4>
+					<p>
+						<b>{{somme}}</b>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<div class="widget-small warning coloured-icon">
+				<i class="icon fa fa-files-o fa-3x"></i>
+				<div class="info">
+					<h4>Nombre de reservation</h4>
+					<p>
+						<b>8</b>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-3">
+			<div class="widget-small danger coloured-icon">
+				<i class="icon fa fa-star fa-3x"></i>
+				<div class="info">
+					<h4>Stars</h4>
+					<p>
+						<b>500</b>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="tile">
+				<h3 class="tile-title">Monthly Sales</h3>
+				{{ render_chart(chart) }}
+			
+			</div>
+
+            
+		</div>
+		<div class="col-md-6">
+			<div class="tile">
+				<h3 class="tile-title">Support Requests</h3>
+				<div>
+        
+	<div style="padding : 7px;margin-right:30%">
+  
+		
+     
+
+
+
+<ul>
+ <li> <a href="{{ path ('charts_allYear') }}" >  Toutes les années </a> </li>
+ {% for year in years %}
+<li> <a href="{{ path ('charts_everyYear',{'annee': year.annees})}}" > {{ year.annees}}  </a> </li>
+ {% endfor %}
+
+</ul>
+
+
+
+
+<!--
+<select>
+<option> <a href="{{ path ('charts_allYear') }}" >  Toutes les années </a></option>
+{% for year in years %}
+<option><a href="{{ path ('charts_everyYear',{'annee': year.annees})}}" > {{ year.annees}}  </a></option>
+{% endfor %}
+</select>
+-->
+      </div>
+					<canvas class="chartBox" id="myChart"></canvas>
+                      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const data = {
+      labels: [{% for d in stats %}  ' {{ d.months }} / {{d.annees}}' ,   {% endfor %}],
+      datasets: [{
+        label: 'Monthly Sales',
+        data:  [{% for d in stats %} {{ d.somme}} , {% endfor %} ''],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+         
+        ],
+        borderColor: [
+         'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+        
+        ],
+        borderWidth: 1
+      }]
+    };
+  
+   
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(  
+      document.getElementById('myChart'),
+      config
+    );
+   
+
+    
+
+    </script>
+
+				</div>
+			</div>
+		</div>
+
+        	
+	 
+</main>{% endblock %}
+

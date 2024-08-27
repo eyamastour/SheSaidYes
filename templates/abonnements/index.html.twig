@@ -1,0 +1,98 @@
+{% extends 'back_base.html.twig' %}
+
+
+{% block main %}
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-tasks"></i>
+				Abonnements</h1>
+			<p>Abonnements Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="/index/get">Abonnements</a>
+			</li>
+      <li class="breadcrumb-item">
+				<a href="{{path ('list_abonnes')}}">Abonnements</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tile">
+				<div class="tile-body">
+					<div class="table-responsive">
+						<div class="d-flex">
+							<div class="p-2">
+								<h1>Détails des Abonnements
+								</h1>
+                  {% for message in app.flashes('info') %}
+     <div class="alert alert-success">
+         {{message}}  
+     </div>
+  {% endfor %}
+							</div>
+
+							<div class="ml-auto p-2">
+					
+								<a class="btn btn-outline-danger " href="{{path ('ajouter')}}">Create new</a>
+                <a class="btn btn-outline-danger " href="{{path ('listpdf')}}">Imprimer</a>
+                <a class="btn btn-outline-danger " href="{{path ('tri')}}">Tri par date début</a>
+				{{ include('abonnements/_filtre.html.twig', {'button_label': 'Search'}) }}
+							</div>
+						</div>
+
+
+						<table class="table table-hover table-bordered" id="sampleTable">
+							<thead>
+								<tr>
+									
+									<th>Nom sociéte</th>
+                                    <th>Durée Abonnement</th> 
+									<th>Prix Abonnement</th>
+                                    <th>Date Début Abonnement</th>
+                                    <th>Date Fin Abonnement</th>
+
+
+									<th style="text-align : center">actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for abonné in abonnements %}
+									<tr>
+                                        <td>{{abonné.idprest }}</td>
+                                        <td>{{abonné.duree }}</td>
+                                        <td>{{abonné.prix }}</td>
+										<td>{{abonné.dateDebut|date }}</td>
+										<td>{{abonné.dateFin|date }}</td>
+										
+
+										<td style="text-align : center">
+			
+											<a class="btn btn-outline-success " href="{{path('details_abonnees' ,{id: abonné.id})}}">show</a>
+                      <a class="btn btn-outline-warning " href="{{path('modifier' ,{id: abonné.id})}}">edit</a>
+											<a class="btn btn-outline-danger " href="{{path('supprimer' ,{id: abonné.id})}}">delete</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="8">no records found</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}    
+
+
+
+<div style="display: flex; align-items: center;justify-content: center">
+            
+<div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Nom</span>
+                  </div>
+                 {{form_widget(form.nomsociete,{'att':{'class':'form-control'}})}}
+                 {{ form_errors(form.nomsociete,{'attr':{'class':'form-control'}}) }}
+                </div>
+
+
+
+                  <div class="form-group">
+                  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">telephone mobile  :</i></span>
+                    </div>
+                    {{form_widget(form.numsociete,{'att':{'class':'form-control'}})}}
+                    {{ form_errors(form.numsociete,{'attr':{'class':'form-control'}}) }}
+                  </div>
+                  <!-- /.input group -->
+                     <div class="form-group">
+                
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Fix :</i></span>
+                    </div>
+                     {{form_widget(form.faxsociete,{'att':{'class':'form-control'}})}}
+                     {{ form_errors(form.faxsociete,{'attr':{'class':'form-control'}}) }}
+                     
+
+                  </div>
+                  <!-- /.input group -->
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Categorie</i></span>
+                  </div>
+                 {{form_widget(form.catsociete,{'att':{'class':'form-control'}})}}
+                 {{ form_errors(form.catsociete,{'attr':{'class':'form-control'}}) }}
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">type </span>
+                  </div>
+                 {{form_widget(form.typesociete,{'att':{'class':'form-control'}})}}
+                 {{ form_errors(form.typesociete,{'attr':{'class':'form-control'}}) }}
+                </div>
+                  
+
+                </div>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  </div>
+                    <span class="input-group-text">@</i></span>
+                    {{form_widget(form.url,{'att':{'class':'form-control'}})}}
+                    {{ form_errors(form.url,{'attr':{'class':'form-control'}}) }}
+                  </div>
+                  
+                
+                
+                <div style="padding : 7px">
+		      	{{ form_label(form.logo,"Image : ") }}
+		        	{{ form_widget(form.logo) }}
+	        	</div>
+                 
+               
+{{ form_end(form) }}
+ <div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+               </div>

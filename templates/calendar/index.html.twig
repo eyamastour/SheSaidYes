@@ -1,0 +1,48 @@
+{% extends 'back_base.html.twig' %}
+
+{% block main %}
+<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-archive"></i>
+				Planning</h1>
+			<p>Planning Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="/home"class="fa fa-home fa-lg"></a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="/plannning/">Planning</a>
+			</li>
+		</ul>
+
+	</div>
+<div class="ml-auto p-2">
+								<a class="btn btn-outline-danger " href="{{ path('app_plannning_new') }}">Create new</a>
+							
+							
+
+							
+								
+							
+						</div>
+	<div class="row" style="text-align :center">
+		<div class="col-md-12">
+			<div class="tile">
+				<h1>mon calendrier</h1>
+                    
+    
+
+
+				{{ include('calendar/calendar.html.twig') }}
+
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+

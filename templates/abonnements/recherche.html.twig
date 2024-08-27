@@ -1,0 +1,19 @@
+{% extends 'back_base.html.twig' %}
+{% block title %} Rechercher Abonnement {% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+
+<div class="form-row align-items-end" >
+ <div class="col">
+   {{ form_row(form.duree) }}
+ </div>
+
+  <div class="col">
+   <div class="form-group">
+      <button type="submit" class="btn btn-success">Rechercher</button>
+    </div>
+ </div>
+</div>
+ {{ form_end(form) }}
+{% endblock %}

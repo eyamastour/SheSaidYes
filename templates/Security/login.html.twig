@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Se connecter</title>
+    <link href="{{ asset('img/home/fav.png') }} " rel="icon">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main3.css">
+</head>
+
+
+
+<body>
+
+    <div class="main">
+
+        <div class="limiter">
+            <div class="booking-content">
+                <div class="booking-image">
+                    <img class="booking-img" src="images/heroImg.jpeg" alt="Booking Image">
+                </div>
+
+                <div class="bookingg-form">
+                    {# <form id="RegistrationType"> #}
+                       <span class="login1000-form-title p-b-43">
+						Login to continue
+					    </span>
+                        
+                        {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                         {% endif %}
+
+                            <form action="{{ path('app_login') }}" method="post">
+                        
+
+                         <div class="form-group form-input">
+        
+                              <label for="username" >Email:</label>
+                              <input type="email"  placeholder="Votre adresse email" id="inputEmail" name="email" value="{{ last_username }}"/>
+                              
+                         </div>
+
+                          <div class="form-group form-input">
+
+                              <label for="password" >Password:</label>
+                             <input type="password" placeholder="Votre mot de passe" id="password" name="_password"/>
+                         </div>
+
+                        
+                          <input type="hidden" name="_csrf_token"
+                         value="{{ csrf_token('authenticate') }}"
+         >
+
+{# 
+                        <div class="form-group form-input">
+                            {{ form_widget(form.role,{'attr': {'placeholder': 'role '}}) }}
+                            {{ form_errors(form.role)}}
+                        </div> #}
+
+                         
+
+                        
+                        <input type="submit"  value="Login" />
+                        
+    </form>
+                        <p class="sign-up text-center"><a href="{{ path('app_forgotten_password') }}"> Mot de passe oublié</a></p>
+                        <p class="sign-up text-center">Vous n'avez pas de compte ?<a href="{{ path('registration') }}"> S'inscrire</a></p>
+                        {# <p class="terms">En créant un compte, vous acceptez notre<a href="#"> Termes et conditions</a></p> #}
+
+                      {# </form> #}
+                  </div>
+              </div>
+        </div>
+
+    </div>
+
+    
+  	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main4.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

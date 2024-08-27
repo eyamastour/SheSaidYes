@@ -1,0 +1,92 @@
+{% extends 'back_base.html.twig' %}
+
+
+{% block main %}
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-tasks"></i>
+			Coupons</h1>
+			<p>Cupons Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="/coupon/coupons">Coupons de réductions</a>
+			</li>
+      <li class="breadcrumb-item">
+				<a href="{{path ('list_coupon')}}">Coupons</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tile">
+				<div class="tile-body">
+					<div class="table-responsive">
+						<div class="d-flex">
+							<div class="p-2">
+								<h1>Détails des coupons de réduction
+								</h1>
+                  {% for message in app.flashes('info') %}
+     <div class="alert alert-success">
+         {{message}}  
+     </div>
+  {% endfor %}
+							</div>
+
+							<div class="ml-auto p-2">
+					
+								<a class="btn btn-outline-danger " href="{{path ('ajouter_coupon')}}">Create new</a>
+
+				
+							</div>
+						</div>
+
+
+						<table class="table table-hover table-bordered" id="sampleTable">
+							<thead>
+								<tr>
+
+									<th>Code </th>
+                                    <th>Pourcentage Réduction</th> 
+
+
+
+									<th style="text-align : center">actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for coupon in coupons %}
+									<tr>
+                                        <td>{{coupon.code}}</td>
+                                        <td>{{coupon.pourcentageReduction}}</td>
+                                        
+
+										<td style="text-align : center">
+			
+											<a class="btn btn-outline-success " href="{{path('details_coupon' ,{id: coupon.id})}}">show</a>
+                      <a class="btn btn-outline-warning " href="{{path('modifier_coupon' ,{id: coupon.id})}}">edit</a>
+											<a class="btn btn-outline-danger " href="{{path('supprimer_coupon' ,{id: coupon.id})}}">delete</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="8">no records found</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

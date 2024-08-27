@@ -1,0 +1,45 @@
+
+{% extends 'back_base.html.twig' %}
+
+
+{% block main %}
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tile">
+				<div class="tile-body">
+					<div class="table-responsive">
+						<div class="d-flex">
+							<div class="mr-auto p-2">
+								<h1>Planning</h1>
+							</div>
+							<div class="p-2">
+								<a class="btn btn-outline-warning " href="{{ path('app_plannning_edit', {'idplan': planning.idplan}) }}">edit</a>
+							</div>
+							<div class="p-2">
+								{{ include('plannning/_delete_form.html.twig') }}
+							</div>
+						</div>
+						<table class="table">
+							<tbody>
+								 <tr>
+                                  <th>Dateplan</th>
+                                    <td>{{ planning.dateplan }}</td>
+                                        </tr>
+                                      <tr>
+                                        <th>Etatplan</th>
+                                        <td>{{ planning.etatplan }}</td>
+                                         </tr>
+							</tbody>
+						</table>
+
+						<a class="btn btn-secondary" href="{{ path('app_plannning_index') }}">back to list</a>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

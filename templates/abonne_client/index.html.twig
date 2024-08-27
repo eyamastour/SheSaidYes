@@ -1,0 +1,58 @@
+
+{% extends 'back_base.html.twig' %}
+
+
+{% block main %}
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-tasks"></i>
+				Espace Prestataire</h1>
+			<p>Espace Prestataire Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="#">EspacePrestataire</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="row" style="text-align :center">
+		<div class="col-md-12">
+			<div class="tile">
+				<h1>Acheter Abonnement</h1>
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="row">
+ 
+	<div class="col-lg-4   offset-lg-1  align:center">
+
+        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.duree," Durée Abonnement: ") }}
+			{{ form_widget(form.duree) }}
+        </div>
+		
+        </td>
+ 
+
+
+
+	</div>
+</div>
+
+{{ form_end(form) }}
+<a class="btn btn-secondary" href="#">back </a>
+
+			</div>
+            
+		</div>
+	</div>
+
+
+{% endblock %}

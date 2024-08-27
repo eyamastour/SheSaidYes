@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" 
+integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+{% block stylesheets %}
+<style>
+    #calendrier{
+        width: 80%;
+        margin: auto;
+    }
+</style>
+
+{% endblock %}
+{% block main %}
+
+        
+ <div class="row" style="text-align :center">
+		<div class="col-md-12">
+			<div class="tile">
+				<h1> le Planning</h1>
+
+<div id="calendrier">
+ </div>
+ 
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js" 
+integrity="sha256-XCdgoNaBjzkUaEJiauEq+85q/xi/2D4NcB3ZHwAapoM=" crossorigin="anonymous"></script>
+{% block javascripts %}
+<script>
+window.onload = () => {
+    let calendarElt = document.querySelector("#calendrier")
+    let calendar =new FullCalendar.Calendar(calendarElt, {
+          initialView: 'dayGridMonth',
+          locale : 'fr',
+          timeZone: 'Afrique/Tunisie',
+          headerToolbar: {
+              start: 'prev,next today',
+              center: 'title',
+              end: 'dayGridMonth,timeGridWeek'
+
+          },
+          events: {{ data|raw }},
+          editable: true
+        })
+        calendar.on('eventChange' , (e) => {
+            console.log(e)
+        })
+
+    calendar.render()
+}
+</script>
+{% endblock %}

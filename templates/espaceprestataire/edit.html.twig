@@ -1,0 +1,38 @@
+{% extends 'back_base.html.twig' %}
+{% block main %}
+
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-archive"></i>
+				Espace Prestataire</h1>
+			<p>Espace Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="/espaceprestataire/">Espace Prestataire</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="row" style="text-align :center">
+		<div class="col-md-12">
+			<div class="tile">
+				<h1>Edit espace prestataire</h1>
+
+
+				{{ include('espaceprestataire/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+

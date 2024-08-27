@@ -1,0 +1,121 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_start(form) }}
+<div class="row">
+	<div class="col-lg-4   offset-lg-1 ">
+		<div style="padding : 7px">
+			{{ form_label(form.nom,"Nom : ") }}
+			{{ form_widget(form.nom) }}</div>
+		<div style="padding : 7px">{{ form_label(form.description,"Description : ") }}
+			{{ form_widget(form.description) }}</div>
+
+
+	</div>
+
+	<div class="col-lg-5  offset-lg-1">
+
+		<div style="padding : 7px">
+			{{ form_label(form.image,"Image : ") }}
+			{{ form_widget(form.image) }}
+		</div>
+		<div style="padding : 7px">
+			{{ form_label(form.prix,"Prix : ") }}
+			{{ form_widget(form.prix) }}
+		</div>
+		<div style="padding : 7px">
+			{{ form_label(form.promo,"Promotion : ") }}
+			{{ form_widget(form.promo) }}
+		</div>
+
+
+	</div>
+</div>
+
+
+{{ form_label(form.pos1, 'choisir location') }}
+<div class="marker-position">click on the map, move the marker, click on the marker</div>
+<div id="map"></div>
+<div style="padding : 7px">
+
+	{{ form_widget(form.pos1 , {'attr': {'class': 'pos'}}) }}
+</div>
+<div style="padding : 7px">
+
+	{{ form_widget(form.pos2 , {'attr': {'class': 'pos'}}) }}
+</div>
+
+<a class="btn btn-secondary" href="{{ path('app_packs_index') }}">back to list</a>
+<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+
+<div class="marker-position">click on the map, move the marker, click on the marker</div>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+<script>
+	const pos1 = document.getElementById("packs1_pos1");
+const pos2 = document.getElementById("packs1_pos2");
+
+
+const map = L.map('map').setView([
+36.70365959719456, 10.17818283871446
+], 7);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+if (pos1.value != "") {
+
+L.marker([pos1.value, pos2.value]).addTo(map).bindPopup('Bienvenu').openPopup();
+}
+// add marker on click
+map.on("click", addMarker);
+
+function addMarker(e) {
+
+map.eachLayer((layer) => {
+if (layer['_latlng'] != undefined) 
+layer.remove();
+
+
+
+});
+// Add marker to map at click location
+const markerPlace = document.querySelector(".marker-position");
+markerPlace.textContent = `new marker: ${
+e.latlng.lat
+}, ${
+e.latlng.lng
+}`;
+
+const marker = new L.marker(e.latlng, {draggable: true}).addTo(map);
+
+// event remove marker
+marker.on("popupopen", removeMarker);
+
+// event draged marker
+marker.on("dragend", dragedMaker);
+pos1.value = e.latlng.lat;
+pos2.value = e.latlng.lng;
+}
+
+const buttonRemove = '<button type="button" class="remove"></button>';
+
+// remove marker
+function removeMarker() {
+const marker = this;
+const btn = document.querySelector(".remove");
+btn.addEventListener("click", function () {
+const markerPlace = document.querySelector(".marker-position");
+markerPlace.textContent = "goodbye marker 💩";
+map.removeLayer(marker);
+});
+}
+
+// draged
+function dragedMaker() {
+const markerPlace = document.querySelector(".marker-position");
+markerPlace.textContent = `change position: ${
+this.getLatLng().lat
+}, ${
+this.getLatLng().lng
+}`;
+}
+</script>

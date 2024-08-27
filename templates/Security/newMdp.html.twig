@@ -1,0 +1,6 @@
+{% extends 'front_base.html.twig' %}
+    {% block body %}
+        <h1>Inscription</h1>
+        {{ include('login/mdp.html.twig') }}
+        <a href="{{ path('app_login') }}">Retour</a>
+    {% endblock %}

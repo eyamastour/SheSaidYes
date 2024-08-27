@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block acc %}
+    <!-- Header Container
+    ================================================== -->
+    <header id="header-container" class="fullwidth">
+
+        <!-- Header -->
+        <div id="header">
+            <div class="container">
+
+                <!-- Left Side Content -->
+                <div class="left-side">
+
+                    <!-- Logo -->
+                    <div id="logo">
+                        <a href="{{ path('indexc') }}"><img src="{{ asset('images/logoCareerKey.png') }}" alt=""></a>
+                    </div>
+
+                    <!-- Main Navigation -->
+                    <nav id="navigation">
+                        <ul id="responsive">
+
+                            <li><a href="{{ path('index') }}" {%block statusH %} class="current" {% endblock%} >Home</a>
+                            </li>
+                            {% block menuentreprise %}
+                            <li><a  {%block statusW %}  {% endblock%} >Find Work</a>
+                                <ul class="dropdown-nav" >
+                                    <li><a href="{{ path('entreprise_index') }}">Browse Companies </a></li>
+                                    <li><a href="{{ path('startup_index') }}">Browse Startups</a></li>
+                                    <li><a href="{{ path('besoin_entreprise_index',{'type_besoin':'C'}) }}">Browse Companies Jobs</a></li>
+                                    <li><a href="{{ path('besoin_entreprise_index',{'type_besoin':'S'}) }}">Browse Startups Jobs  </a></li>
+                                    <li><a href=" {{ path('formation_front') }} ">Formations</a></li>
+                                    <li><a href="{{ path('afficher_event') }}">Browse event </a></li>
+                                    <li><a href="{{ path('afficher_categorie') }}">Browse categories</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a {%block statusE %}  {% endblock%} >For Employers</a>
+                                <ul class="dropdown-nav">
+                                    {% block menubaha %}
+                                        <li><a href="{{ path('entreprise_indexu',{'id_user':app.user.id}) }}">My Companies </a></li>
+                                        <li><a href="{{ path('startup_indexu',{'id_user':app.user.id}) }}">My Startups </a></li>
+                                        <li><a href="{{ path('token',{'type_besoin':'ù'}) }}">My meets </a></li>
+                                    {% endblock %}
+                                </ul>
+                            </li>
+                            {% block freelance %}
+                           <li> <a href="">Freelance</a>
+                            <ul class="dropdown-nav" >
+                                <li><a href="{{ path('servicesFront') }}">Voir les services </a></li>
+                                <li><a href="{{ path('mesServices',{'id_user':app.user.id}) }}">Voir mes services</a></li>
+                                <li><a href="{{ path('demandesFront',{'id_user':app.user.id}) }}">Voir les demandes envoyées</a></li>
+                                <li><a href="{{ path('demandesRecues',{'id_user':app.user.id}) }}">Voir les demandes reçues</a></li>
+                            </ul>
+                            </li>
+                        {% endblock %}
+                            {% endblock %}
+
+
+                        </ul>
+                    </nav>
+                    <div class="clearfix"></div>
+                    <!-- Main Navigation / End -->
+
+                </div>
+                <!-- Left Side Content / End -->
+{% endblock %}
+{% block menuuser %}
+
+    <!-- Right Side Content / End -->
+    <div class="right-side">
+
+
+
+        <!-- User Menu -->
+        <div class="header-widget"  style="height: 100%">
+
+            <!-- Messages -->
+            <div class="header-notifications user-menu">
+                <div class="header-notifications-trigger">
+                    <a href="#"><div class="user-avatar status-online"><img src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt=""></div></a>
+                </div>
+
+                <!-- Dropdown -->
+                <div class="header-notifications-dropdown">
+
+                    <!-- User Status -->
+                    <div class="user-status">
+
+                        <!-- User Name / Avatar -->
+                        <div class="user-details">
+                            <div class="user-avatar status-online"><img src="{{ vich_uploader_asset(app.user,'imageFile') }}" alt=""></div>
+                            <div class="user-name">{{ app.user.prenom }}  {{ app.user.nom }} <span>{{ app.user.roles[0] }} </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <ul class="user-menu-small-nav">
+                        <li><a href="{{ path('dashbord') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+
+                        <li><a href="{{path('settings_user',{'id':app.user.id}) }}"><i class="icon-material-outline-settings"></i> Settings</a></li>
+                        <li><a href="{{ path('app_logout') }}"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- User Menu / End -->
+
+        <!-- Mobile Navigation Button -->
+        <span class="mmenu-trigger">
+					<button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+				</span>
+
+    </div>
+    <!-- Right Side Content / End -->
+
+{%  endblock  %}

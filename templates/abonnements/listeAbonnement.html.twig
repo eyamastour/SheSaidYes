@@ -1,0 +1,30 @@
+
+{% block main %}
+<div style="position : absolute;margin-left:19%;width:80%;heigth:auto">
+ 
+  <h1 align="centre"> Liste des abonnements </h1><hr>
+  
+  <table id="abonnements" class="table table-striped" >
+     <thead> 
+       <tr> 
+         <th> Durée Abonnement </th>
+         <th> Prix </th>
+         <th> Nom Societe </th>
+         <th> Date Debut</th>
+         <th> Date Fin  </th>
+        
+     </thead>
+     <tbody> 
+       {% for abonné in abonnements %}
+        <tr > 
+          <td >{{abonné.duree}}<td>
+          <td>{{abonné.prix}}<td>
+          <td>{{abonné.dateDebut|date }}</td>
+          <td>{{abonné.dateFin|date }}</td>
+         
+        </tr>
+        {% endfor %}
+     </tbody>
+  </table>
+
+  {% endblock %}

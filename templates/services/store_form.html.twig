@@ -1,0 +1,39 @@
+{{form_start(form)}}
+
+{{ form_widget(form.searchValue , {'attr': {'class': 'searchBar'}})  }}
+<h3 class="categorie">Categorie</h3>
+{{ form_widget(form.categories , {'attr': {'class': 'cat'}}) }}
+<h3 class="categorie">Prix</h3>
+<div class="row">
+	<div class="col-md-6">
+		{{ form_widget(form.min , {'attr': {'class': 'prix'}}) }}
+	</div>
+	<div class="col-md-6">
+		{{ form_widget(form.max , {'attr': {'class': 'prix'}}) }}
+	</div>
+	<div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="slider-range"></div>
+			</div>
+		</div>
+		<div class="row slider-labels">
+			<div class="col-6 caption">
+				<strong>Min:</strong>
+				<span id="slider-range-value1"></span>
+			</div>
+			<div class="col-6 text-right caption">
+				<strong>Max:</strong>
+				<span id="slider-range-value2"></span>
+			</div>
+		</div>
+		<div class="row"></div>
+	</div>
+</div>
+
+{{ form_widget(form.promo ) }}
+
+<button type="submit" class="btn btn-danger w-100 promo ">Filtrer</button>
+
+
+{{form_end(form)}}

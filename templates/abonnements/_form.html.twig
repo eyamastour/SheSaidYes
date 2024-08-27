@@ -1,0 +1,36 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="row">
+ 
+	<div class="col-lg-4   offset-lg-1  align:center">
+        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.duree," Durée Abonnement: ") }}
+			{{ form_widget(form.duree) }}
+        </div>
+		
+        </td>
+        <td>
+        <div style="padding : 7px">
+            {{ form_label(form.prix,"Prix : ") }}
+			{{ form_widget(form.prix) }}
+        </div>
+		
+        </td>
+        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.dateDebut,"Date Début : ") }}
+			{{ form_widget(form.dateDebut) }}
+		</div>
+		</td>
+        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.dateFin,"Date Fin : ") }}
+			{{ form_widget(form.dateFin) }}
+		</div>
+        </td>
+
+	</div>
+</div>
+<a class="btn btn-secondary" href="{{ path('list_abonnes') }}">back to list</a>
+<button class="btn btn-success">{{ button_label|default('Create') }}</button>
+{{ form_end(form) }}

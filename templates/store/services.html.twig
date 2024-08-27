@@ -1,0 +1,61 @@
+
+
+{% for p in data %}
+	<div class="col-md-4">
+		<div class="card mb-4 product-wap rounded-0">
+
+			{% if p.promo > 0 %}
+				<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+					-{{p.promo}}%
+				</div>
+			{% endif %}
+			<div class="card rounded-0 ">
+				<img class="card-img rounded-0 img-fluid card-img-top" src="{{ asset('uploads/' ~ p.image) }} ">
+				<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end  justify-content-center">
+					<a class="btn img_item text-white mx-1" href="shop-single.html">
+						<i class="far fa-heart"></i>
+					</a>
+					<a class="btn img_item text-white  mx-2" href={{ path('app_store_item_service', {'id': p.id} ) }}>
+						<i class="far fa-eye"></i>
+					</a>
+					<a class="btn img_item text-white  mx-2" href="{{ path('add_panier', {'id': p.id})}}">
+ 						<i class="fas fa-cart-plus"></i>
+					</a>
+							<a class="btn img_item text-white  mx-2" href="{{ path('app_avis_new', {'id': p.id})}}">
+							<a class="btn img_item text-white  mx-2" href="{{ path('app_avis_new', {'id': p.id})}}">
+					
+						<i class="fa-thin fa-star-sharp"></i>
+					</a>
+
+				</div>
+			</div>
+			<div class="card-body text-center">
+				<h5 class="fw-bolder">{{p.nom}}</h5>
+
+				<ul class="list-unstyled d-flex justify-content-center mb-1">
+					<li>
+						<i class="text-warning fa fa-star"></i>
+						<i class="text-warning fa fa-star"></i>
+						<i class="text-warning fa fa-star"></i>
+						<i class="text-muted fa fa-star"></i>
+						<i class="text-muted fa fa-star"></i>
+					</li>
+				</ul>
+				<p class="text-center mb-0">
+					{% if  p.promo > 0 %}
+						<span class="text-muted text-decoration-line-through">{{p.prix}}
+							$</span>
+
+						{{(p.prix / 100 )* p.promo}}
+						$
+					{% else %}
+						{{p.prix}}
+						$
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+{% endfor %}

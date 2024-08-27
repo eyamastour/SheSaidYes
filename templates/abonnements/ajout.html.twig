@@ -1,0 +1,68 @@
+{% extends 'back_base.html.twig' %}
+
+
+{% block main %}
+	<div class="app-title">
+		<div>
+			<h1>
+				<i class="fa fa-tasks"></i>
+				Abonnement</h1>
+			<p>Abonnements Dashboard</p>
+
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item">
+				<i class="fa fa-home fa-lg"></i>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="/index/get">Abonnement</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="row" style="text-align :center">
+		<div class="col-md-12">
+			<div class="tile">
+				<h1>Create Abonnement</h1>
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="row">
+ 
+	<div class="col-lg-4   offset-lg-1  align:center">
+	        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.idprest,"Nom Sociéte : ") }}
+			{{ form_widget(form.idprest) }}
+		</div>
+		</td>
+        <td>
+        <div style="padding : 7px">
+			{{ form_label(form.duree," Durée Abonnement: ") }}
+			{{ form_widget(form.duree) }}
+        </div>
+		
+        </td>
+        <td>
+        <div style="padding : 7px">
+            {{ form_label(form.prix,"Prix : ") }}
+			{{ form_widget(form.prix) }}
+        </div>
+		
+        </td>
+
+
+
+	</div>
+</div>
+<a class="btn btn-secondary" href="{{ path('list_abonnes') }}">back to list</a>
+<button class="btn btn-success">{{ button_label|default('Create') }}</button>
+{{ form_end(form) }}
+
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

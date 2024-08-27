@@ -1,0 +1,95 @@
+
+
+
+{% extends 'back.html.twig' %}
+
+
+
+{% block main %}
+
+<style>
+body {
+  background: #FCD5CE;
+  background: -webkit-linear-gradient(to right, #FCD5CE, #FFCCD5);
+  background: linear-gradient(to right, #FCD5CE, #FFCCD5);
+  min-height: 100vh;
+}
+</style>
+
+<div class="px-4 px-lg-0">
+  <a class="btn btn-secondary" href="{{ path('app_abonne_client') }}">Retour</a>
+  <!-- For demo purpose -->
+  <div class="container text-white py-5 text-center">
+     
+    <h1 class="display-4" style="margin-top:1px;color:#1D3557;font-family:Lucida">Paiement</h1>
+    <h3 class="lead mb-0" style="color:#1D3557;font-family:Lucida"> Veuillez proceder au paiement pour confirmer votre abonnement</h3>
+    <p class="lead">
+            <u></u></a>
+    </p>
+  </div>
+  <!-- End -->
+      <div class="row py-5 p-4 bg-white rounded shadow-sm">
+
+        <div class="col-lg-6">
+
+        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
+
+          <div class="p-4">
+            <p class="font-italic mb-4">Si vous avez un coupon de recudction, veuillez l'introduire dans cette box</p>
+      {% for message in app.flashes('info') %}
+     <div class="alert alert-success">
+         {{message}}
+         
+     </div>
+     
+     {% endfor %}
+      {% for message in app.flashes('non') %}
+     <div class="alert alert-danger">
+         {{message}}
+         
+     </div>
+     {% endfor %}
+{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+             
+ {{ form_widget(form) }}
+ 
+ <div class="input-group-append border-0">
+              
+   
+    <button id="button-addon3"  class="btn btn-dark px-4 rounded-pill">{{ button_label|default('Appliquer le coupon') }}</button>
+ </div>
+{{ form_end(form) }}
+          
+          </div>
+          
+
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions</div>
+          <div class="p-4">
+            <p class="font-italic mb-4">Si vous avez un commentaire, vous pouvez le laisser dans le box</p>
+            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Résumé de l'abonnement </div>
+          <div class="p-4">
+            <p class="font-italic mb-4"></p>
+            <ul class="list-unstyled mb-4">
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Avant total </strong><strong>{{prix}}DT</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted"> Coupon de réduction</strong><strong>{{pourcentage}}%</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>0.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                <h5 class="font-weight-bold">{{total}}DT</h5>
+              </li>
+            </ul>
+            <form action="/checkout" method="POST">
+      <button type="submit" class="btn btn-dark px-4 rounded-pill btn-lg" style="width:50%;margin-left:25%">Proceder au Paiement</button>
+    </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'front_base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form)}}
+    <br>
+    {{ form_widget(form.code,{"attr":{"placeholder":"Code"}})}}
+    {{ form_errors(form.code)}}
+    <br>
+    <br>
+    {{ form_row(form.password.first,{"attr":{"placeholder":"Mot de passe"}})}}
+    {{ form_errors(form.password.first)}}
+    <br>
+    {{ form_row(form.password.second,{"attr":{"placeholder":"Confirmer le mot de passe"}})}}
+    <font color="red">
+        {{ form_errors(form.password.second)}}
+    </font >
+    <br>
+    <button style="width: 180px"  class="btn btn-primary">{{ button_label|default('Se connecter') }}</button>
+    {{ form_end(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <a href="{{ path('app_login_login') }}">Retour</a>
+
+{%endblock%}

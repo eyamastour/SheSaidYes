@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" 
+integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+{% block stylesheets %}
+<style>
+    #calendrier{
+        width: 80%;
+        margin: auto;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+{% block body %}
+
+<div style=""display: flex; align-items: center;justify-content: center >
+{{ form_start(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-lg-4   offset-lg-1 ">
+		<div style="padding : 7px">
+			 {{ form_label(form.dateplan,"Date : ") }}
+		                    {{ form_widget(form.dateplan, {'attr':{'class':'form-control-border'}})}}   
+                            {{ form_errors(form.dateplan,{'attr':{'class':'form-control'}}) }}
+		<div style="padding : 7px">
+			{{ form_label(form.etatplan,"Etat Planning : ") }}
+		                   {{ form_widget(form.etatplan, {'attr':{'class':'form-control-border'}})}}   
+                           {{ form_errors(form.etatplan,{'attr':{'class':'form-control'}}) }}
+                           </div>
+
+
+	</div>
+
+
+                
+                         
+                      
+                
+
+              
+               
+        
+
+
+
+
+
+
+
+
+
+         {{ form_end(form) }}
+        <a class="btn btn-secondary" href="{{ path('app_plannning_index') }}">back to list</a>
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+         
+          
+{% endblock  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js" 
+integrity="sha256-XCdgoNaBjzkUaEJiauEq+85q/xi/2D4NcB3ZHwAapoM=" crossorigin="anonymous"></script>
+{% block javascripts %}
+<script>
+window.onload = () => {
+    let calendarElt = document.querySelector("#calendrier")
+    let calendar =new FullCalendar.Calendar(calendarElt, {
+          initialView: 'dayGridMonth',
+          locale : 'fr',
+          timeZone: 'Afrique/Tunisie',
+          headerToolbar: {
+              start: 'prev,next today',
+              center: 'title',
+              end: 'dayGridMonth,timeGridWeek'
+
+          }
+        })
+
+    calendar.render()
+}
+</script>
+{% endblock %}
